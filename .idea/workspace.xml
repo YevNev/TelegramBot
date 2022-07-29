@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bdda6971-8f80-4584-b9b9-5169d3895505" name="Changes" comment="This change is going to master">
+    <list default="true" id="bdda6971-8f80-4584-b9b9-5169d3895505" name="Changes" comment="Successfully connected git">
       <change beforePath="$PROJECT_DIR$/src/Botik.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Botik.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659115929428</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Successfully connected git">
+      <created>1659129368310</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659129368310</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +140,7 @@
     <MESSAGE value="Backup" />
     <MESSAGE value="Mark develop branch in code" />
     <MESSAGE value="This change is going to master" />
-    <option name="LAST_COMMIT_MESSAGE" value="This change is going to master" />
+    <MESSAGE value="Successfully connected git" />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully connected git" />
   </component>
 </project>

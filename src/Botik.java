@@ -10,6 +10,9 @@ import static java.net.http.HttpResponse.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Botik {
+
+    public static final int NUMBER_OF_RESPONSE_PARTS_WHICH_ARE_NOT_MESSAGES_AT_THE_START = 1;
+
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 
         String response = getUpdates();
@@ -19,7 +22,7 @@ public class Botik {
 //        5. Антимат
 //        6. Мини-игра на угадывание слова
         Arrays.stream(messages)
-                .skip(1) //  TODO скип1 нужен, чтоб убрать хвост, который не является нужным сообщением(нет chatId)
+                .skip(NUMBER_OF_RESPONSE_PARTS_WHICH_ARE_NOT_MESSAGES_AT_THE_START)
                 .map(UpdatesParser::parseChatId)
         // если я напишу 2 сообщения, то мне придет 2 ответа (Stream)
                 .distinct()
