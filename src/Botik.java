@@ -11,7 +11,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Botik {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-
+// master
         String response = getUpdates();
         String[] messages = UpdatesParser.parseMessages(response);
 //        3. Убрать рыжесть и серость в стриме
