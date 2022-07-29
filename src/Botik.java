@@ -11,17 +11,15 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Botik {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-// master
-// develop
+
         String response = getUpdates();
         String[] messages = UpdatesParser.parseMessages(response);
-//        3. Убрать рыжесть и серость в стриме
-//        3а. Добавить функцию контроля версий (GIT)
+//        7. Добавить папку Идеа в гитигнор
 //        4. Отвечать на сообщения в реальном времени
 //        5. Антимат
 //        6. Мини-игра на угадывание слова
         Arrays.stream(messages)
-                .skip(1) //  TODO скип1 нужен, чтоб убрать dхвост, который не является нужным сообщением(нет chatId)
+                .skip(1) //  TODO скип1 нужен, чтоб убрать хвост, который не является нужным сообщением(нет chatId)
                 .map(UpdatesParser::parseChatId)
         // если я напишу 2 сообщения, то мне придет 2 ответа (Stream)
                 .distinct()
