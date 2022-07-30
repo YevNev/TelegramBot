@@ -15,6 +15,14 @@ public class Botik {
 
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 
+        System.out.println(getUpdates());
+        for (;1 < 2;) {
+            replyMessages();
+        }
+
+    }
+    public static void replyMessages() throws URISyntaxException, IOException, InterruptedException {
+
         String response = getUpdates();
         String[] messages = UpdatesParser.parseMessages(response);
 //        4. Отвечать на сообщения в реальном времени
@@ -23,15 +31,13 @@ public class Botik {
         Arrays.stream(messages)
                 .skip(NUMBER_OF_RESPONSE_PARTS_WHICH_ARE_NOT_MESSAGES_AT_THE_START)
                 .map(UpdatesParser::parseChatId)
-        // если я напишу 2 сообщения, то мне придет 2 ответа (Stream)
+                // если я напишу 2 сообщения, то мне придет 2 ответа (Stream)
                 .distinct()
                 .forEach(Botik::sendMessage);
 
-//        for (int i = 1; i < messages.length; i++) {
+//        for (int i = 1; i < messages.length;) {
 //            String message = messages[i];
 //            String chatId = UpdatesParser.parseChatId(message);
-//            boolean isSeenchatId = ;
-//            if (isSeenchatId)
 //                sendMessage(chatId);
 //        }
     }
