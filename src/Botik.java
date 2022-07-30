@@ -17,7 +17,6 @@ public class Botik {
 
         String response = getUpdates();
         String[] messages = UpdatesParser.parseMessages(response);
-//        7. Добавить папку Идеа в гитигнор
 //        4. Отвечать на сообщения в реальном времени
 //        5. Антимат
 //        6. Мини-игра на угадывание слова
