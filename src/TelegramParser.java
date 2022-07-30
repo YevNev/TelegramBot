@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class UpdatesParser {
+public class TelegramParser {
 
 
 
@@ -27,8 +27,10 @@ public static final String RESPONSE = "{\"ok\":true,\"result\":[{\"update_id\":2
                 response.replaceAll(regex, replacement);
 
         String[] maybeMessages = markedMessages.split(marker);
+        int firstMessageIndex = 1;
+        String[] messages = Arrays.copyOfRange(maybeMessages, firstMessageIndex, maybeMessages.length);
 
-        return maybeMessages;
+        return messages;
 
     }
     public static String parseChatId(String updates) {
@@ -43,5 +45,19 @@ public static final String RESPONSE = "{\"ok\":true,\"result\":[{\"update_id\":2
 
 
         return chatId;
+    }
+
+    public static String parseUpdateId(String updates) {
+        String marker = "#";
+        String regex = "\"update_id\":\\s*(\\d+)";
+        String replacement = marker +"$1"+ marker;
+        String markedUpdateId =
+            updates.replaceFirst(regex, replacement);
+
+        String[] splittedText = markedUpdateId.split(marker);
+        String updateId = splittedText[1];
+
+
+        return updateId;
     }
 }
