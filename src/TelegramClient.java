@@ -14,7 +14,8 @@ public class TelegramClient {
   private static void getMe() throws URISyntaxException, IOException, InterruptedException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
-        .GET().uri(new URI("https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getMe"))
+        .GET().uri(new URI(
+            "https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getMe"))
         .build();
     HttpResponse<String> response = client.send(request,
         responseInfo -> BodySubscribers.ofString(UTF_8));
@@ -47,13 +48,16 @@ public class TelegramClient {
         "can_read_all_group_messages": false,
         "supports_inline_queries": false } }
         */
-  private static void doSendMessage(String chatId) throws URISyntaxException, IOException, InterruptedException {
+  private static void doSendMessage(String chatId)
+      throws URISyntaxException, IOException, InterruptedException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
         .GET()
-        .uri(new URI("https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/sendMessage?chat_id=" +
-            chatId +
-            "&text=" + chatId))
+        .uri(new URI(
+            "https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/sendMessage?chat_id="
+                +
+                chatId +
+                "&text=" + chatId))
         .build();
     HttpResponse<String> response = client.send(request,
         responseInfo -> BodySubscribers.ofString(UTF_8));
@@ -65,13 +69,28 @@ public class TelegramClient {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
         .GET()
-        .uri(new URI("https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getUpdates"))
+        .uri(new URI(
+            "https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getUpdates"))
         .build();
     HttpResponse<String> response = client.send(request,
         responseInfo -> BodySubscribers.ofString(UTF_8));
     String[] messages = TelegramParser.parseMessages(response.body());
 
+    return messages;
+  }
 
+  public static String[] getNewMessages(String updateId)
+      throws URISyntaxException, IOException, InterruptedException {
+    HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+        .GET()
+        .uri(new URI(
+            "https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getUpdates?offset="
+                + updateId))
+        .build();
+    HttpResponse<String> response = client.send(request,
+        responseInfo -> BodySubscribers.ofString(UTF_8));
+    String[] messages = TelegramParser.parseMessages(response.body());
     return messages;
   }
 }
