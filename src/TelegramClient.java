@@ -79,7 +79,7 @@ public class TelegramClient {
     return messages;
   }
 
-  public static String[] getNewMessages(String updateId)
+  public static String[] getNewMessages(long updateId)
       throws URISyntaxException, IOException, InterruptedException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
