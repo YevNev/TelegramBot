@@ -7,6 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodySubscribers;
+import java.util.Optional;
 
 
 public class TelegramClient {
@@ -94,7 +95,7 @@ public class TelegramClient {
     return messages;
   }
 
-  public static long getLastUpdateId()
+  public static Optional<Long> getLastUpdateId()
       throws IOException, InterruptedException, URISyntaxException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
@@ -104,7 +105,7 @@ public class TelegramClient {
         .build();
     HttpResponse<String> response = client.send(request,
         responseInfo -> BodySubscribers.ofString(UTF_8));
-    String updateId = TelegramParser.parseUpdateId(response.body());
-    return Long.parseLong(updateId);
+    Optional<String> maybeUpdateId = TelegramParser.parseUpdateId(response.body());
+    return maybeUpdateId.map(id -> Long.parseLong(id));
   }
 }

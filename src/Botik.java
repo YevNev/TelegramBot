@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class Botik {
 
@@ -12,7 +13,10 @@ public class Botik {
       throws URISyntaxException, IOException, InterruptedException {
 
     System.out.println(TelegramClient.getMessagesUpdate());
-    long updateId = TelegramClient.getLastUpdateId();
+    Optional<Long> maybeUpdateId = TelegramClient.getLastUpdateId();
+
+    long updateId = 1 + maybeUpdateId.get();
+    System.out.println("Starting from Update # " + updateId);
 
     for (; 1 < 2; ) {
 
