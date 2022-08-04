@@ -12,7 +12,7 @@ public class Botik {
       throws URISyntaxException, IOException, InterruptedException {
 
     System.out.println(TelegramClient.getMessagesUpdate());
-    long updateId = 244451297;
+    long updateId = TelegramClient.getLastUpdateId();
 
     for (; 1 < 2; ) {
 
@@ -34,7 +34,6 @@ public class Botik {
 
     Arrays.stream(messages)
         .map(TelegramParser::parseChatId)
-        // если я напишу 2 сообщения, то мне придет 2 ответа (Stream)
         .distinct()
         .forEach(TelegramClient::sendMessage);
 

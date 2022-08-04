@@ -93,4 +93,18 @@ public class TelegramClient {
     String[] messages = TelegramParser.parseMessages(response.body());
     return messages;
   }
+
+  public static long getLastUpdateId()
+      throws IOException, InterruptedException, URISyntaxException {
+    HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+        .GET()
+        .uri(new URI(
+            "https://api.telegram.org/bot1987821823:AAG5hLjUfmx4-kzV-_GDIxJPuUrvNHjYNsM/getUpdates"))
+        .build();
+    HttpResponse<String> response = client.send(request,
+        responseInfo -> BodySubscribers.ofString(UTF_8));
+    String updateId = TelegramParser.parseUpdateId(response.body());
+    return Long.parseLong(updateId);
+  }
 }
